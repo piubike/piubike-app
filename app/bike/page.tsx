@@ -10,6 +10,7 @@ export default function BikePage() {
   return (
     <main style={{ padding: "2rem" }}>
       <h1>Selecciona tu Bicicleta</h1>
+      <p>Demo Resilience activo</p>
 
       {/* Gravel Pro */}
       <button
