@@ -1,78 +1,74 @@
 "use client";
 
-import { useBike } from "./context/BikeContext";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useBike } from "../context/BikeContext";
 
-export default function Home() {
+export default function BikePage() {
+  const [bike, setBikeLocal] = useState("");
   const { setBike } = useBike();
   const router = useRouter();
 
-  const handleSelectBike = (bike: any) => {
-    setBike(bike);
-    localStorage.setItem("bike", JSON.stringify(bike));
+  const handleSelect = (selectedBike: any) => {
+    setBike(selectedBike);
+    localStorage.setItem("bike", JSON.stringify(selectedBike));
+    setBikeLocal(selectedBike.name);
     router.push("/checkout");
   };
 
   return (
-    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Selecciona tu bicicleta</h1>
+    <main style={{ padding: "2rem" }}>
+      <h1>Selecciona tu Bicicleta</h1>
+      <p>Demo Resilience activo</p>
 
-      {/* Gravel */}
-      <button
-        style={{ margin: "0.5rem", padding: "10px" }}
-        onClick={() =>
-          handleSelectBike({
-            name: "Gravel Pro 🚴‍♂️",
-            price: 2500,
-          })
-        }
-      >
-        Gravel Pro - $2.500
+      <button onClick={() =>
+        handleSelect({ name: "Gravel Pro 🚴", price: 3000 })
+      }>
+        Elegir Gravel Pro
       </button>
 
-      {/* MTB */}
-      <button
-        style={{ margin: "0.5rem", padding: "10px" }}
-        onClick={() =>
-          handleSelectBike({
-            name: "MTB Elite 🚵‍♀️",
-            price: 3200,
-          })
-        }
-      >
-        MTB Elite - $3.200
+      <button onClick={() =>
+        handleSelect({ name: "MTB Elite 🚵", price: 3200 })
+      }>
+        Elegir MTB Elite
       </button>
 
-      {/* Urbana */}
-      <button
-        style={{ margin: "0.5rem", padding: "10px" }}
-        onClick={() =>
-          handleSelectBike({
-            name: "Urban Rider 🚲",
-            price: 1200,
-          })
-        }
-      >
-        Urban Rider - $1.200
+      <button onClick={() =>
+        handleSelect({ name: "Urban Rider 🚲", price: 2500 })
+      }>
+        Elegir Urban Rider
       </button>
 
-      {/* 🔥 RESILIENCE */}
       <button
-        style={{
-          marginTop: "20px",
-          padding: "10px",
-          background: "black",
-          color: "white",
-        }}
+        style={{ background: "black", color: "white" }}
         onClick={() =>
-          handleSelectBike({
+          handleSelect({
             name: "Resilience Smart Bike 🚴‍♂️",
             price: 3500,
           })
         }
       >
-        Resilience Smart Bike (con chip + NFT)
+        Elegir Resilience Smart Bike (con chip)
       </button>
+
+      {bike.includes("Resilience") && (
+        <div style={{ marginTop: "20px" }}>
+          <h2>Resilience (Beta)</h2>
+
+          <h3>Basic (NFT)</h3>
+          <ul>
+            <li>Presión neumáticos</li>
+            <li>Ajustes</li>
+            <li>Postura</li>
+          </ul>
+
+          <h3>Pro (suscripción)</h3>
+          <ul>
+            <li>IA avanzada</li>
+            <li>Rendimiento</li>
+          </ul>
+        </div>
+      )}
     </main>
   );
 }
