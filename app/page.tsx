@@ -7,55 +7,69 @@ export default function Home() {
   const { setBike } = useBike();
   const router = useRouter();
 
+  const handleSelectBike = (bike: any) => {
+    setBike(bike);
+    localStorage.setItem("bike", JSON.stringify(bike));
+    router.push("/checkout");
+  };
+
   return (
     <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h1>Selecciona tu bicicleta</h1>
 
       {/* Gravel */}
       <button
-        onClick={() => {
-          setBike({ name: "Gravel Pro 🚴‍♂️", price: 2500 });
-          router.push("/checkout");
-        }}
+        style={{ margin: "0.5rem", padding: "10px" }}
+        onClick={() =>
+          handleSelectBike({
+            name: "Gravel Pro 🚴‍♂️",
+            price: 2500,
+          })
+        }
       >
         Gravel Pro - $2.500
       </button>
 
       {/* MTB */}
       <button
-        onClick={() => {
-          setBike({ name: "MTB Elite 🚵‍♀️", price: 3200 });
-          router.push("/checkout");
-        }}
+        style={{ margin: "0.5rem", padding: "10px" }}
+        onClick={() =>
+          handleSelectBike({
+            name: "MTB Elite 🚵‍♀️",
+            price: 3200,
+          })
+        }
       >
         MTB Elite - $3.200
       </button>
 
       {/* Urbana */}
       <button
-        onClick={() => {
-          setBike({ name: "Urban Rider 🚲", price: 1200 });
-          router.push("/checkout");
-        }}
+        style={{ margin: "0.5rem", padding: "10px" }}
+        onClick={() =>
+          handleSelectBike({
+            name: "Urban Rider 🚲",
+            price: 1200,
+          })
+        }
       >
         Urban Rider - $1.200
       </button>
 
-      {/* 🔥 RESILIENCE SMART BIKE */}
+      {/* 🔥 RESILIENCE */}
       <button
         style={{
           marginTop: "20px",
+          padding: "10px",
           background: "black",
           color: "white",
-          padding: "10px",
         }}
-        onClick={() => {
-          setBike({
+        onClick={() =>
+          handleSelectBike({
             name: "Resilience Smart Bike 🚴‍♂️",
             price: 3500,
-          });
-          router.push("/checkout");
-        }}
+          })
+        }
       >
         Resilience Smart Bike (con chip + NFT)
       </button>
