@@ -33,13 +33,40 @@ export default function Checkout() {
       <p>${price}</p>
 
       {/* 🔥 RESILIENCE SI ES BICI INTELIGENTE */}
-      {name.includes("Resilience") && (
-        <div style={{ marginBottom: "20px" }}>
-          <h3>Resilience incluido</h3>
-          <p>✔ Basic incluido en NFT</p>
-          <p>🔒 Pro (suscripción - en desarrollo)</p>
-        </div>
-      )}
+     {name.includes("Resilience") && (
+  <div style={{ marginBottom: "20px", padding: "15px", background: "#111", borderRadius: "10px" }}>
+    <h3>🚴‍♂️ Resilience System</h3>
+
+    <p>
+      Bicicleta inteligente con chip integrado que transforma tu pedaleo en datos.
+    </p>
+
+    <h4>🔹 Resilience Basic (incluido en NFT)</h4>
+    <ul>
+      <li>Ajuste de sillín</li>
+      <li>Posición de manillar</li>
+      <li>Configuración de bielas</li>
+      <li>Datos básicos de postura</li>
+    </ul>
+
+    <h4>🔒 Resilience Pro (suscripción)</h4>
+    <ul>
+      <li>Análisis biomecánico avanzado</li>
+      <li>Optimización de rendimiento</li>
+      <li>Prevención de lesiones</li>
+      <li>IA personalizada</li>
+    </ul>
+
+    <p style={{ fontSize: "12px", opacity: 0.7 }}>
+      *Versión Pro en desarrollo – disponible próximamente vía app Resilience
+    </p>
+
+    <div style={{ marginTop: "10px", padding: "10px", background: "#222", borderRadius: "8px" }}>
+      <strong>🔗 NFT Bike ID</strong>
+      <p>Incluye acceso a Resilience Basic + activación futura de Pro</p>
+    </div>
+  </div>
+)} 
 
       <h3>Datos del usuario</h3>
 
@@ -73,6 +100,25 @@ export default function Checkout() {
 
       <p>Fiat: {fiat}% → ${fiatAmount}</p>
       <p>Crypto: {100 - fiat}% → ${cryptoAmount}</p>
+      {/* 🪶 USO DE ALAS */}
+<div style={{ marginTop: "15px" }}>
+  <h4>Usar Alas</h4>
+
+  <p>Tienes: 120 Alas disponibles</p>
+
+  <button
+    onClick={() => alert("Aplicando Alas al pago (demo)")}
+    style={{
+      padding: "8px",
+      background: "#9333ea",
+      color: "white",
+      border: "none",
+      borderRadius: "6px",
+    }}
+  >
+    Aplicar Alas (-$200)
+  </button>
+</div>
 
       <button
         onClick={() => {
@@ -102,6 +148,33 @@ export default function Checkout() {
       >
         Confirmar Pago
       </button>
+      <div style={{ marginTop: "20px", padding: "15px", background: "#111", borderRadius: "10px" }}>
+  <h3>🪶 Piubike Alas (Token)</h3>
+
+  <p>
+    Gana Alas con cada compra y úsalas para pagar futuras bicicletas o servicios.
+  </p>
+
+  <ul>
+    <li>✔ Cashback en cada compra</li>
+    <li>✔ Canje para pagar bicicletas</li>
+    <li>✔ Acceso a experiencias exclusivas</li>
+  </ul>
+
+  <button
+    style={{
+      marginTop: "10px",
+      padding: "10px",
+      background: "#9333ea",
+      color: "white",
+      border: "none",
+      borderRadius: "8px",
+    }}
+    onClick={() => alert("Compra de Alas próximamente disponible")}
+  >
+    Comprar Alas (token)
+  </button>
+</div>
     </div>
   );
 }
