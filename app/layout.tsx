@@ -2,7 +2,7 @@ import { BikeProvider } from "./context/BikeContext";
 
 export default function RootLayout({ children }: any) {
   return (
-    <html>
+    <html lang="es">
       <body>
         <BikeProvider>
           {children}
