@@ -4,9 +4,7 @@ export default function RootLayout({ children }: any) {
   return (
     <html lang="es">
       <body>
-        <BikeProvider>
-          {children}
-        </BikeProvider>
+        <BikeProvider>{children}</BikeProvider>
       </body>
     </html>
   );

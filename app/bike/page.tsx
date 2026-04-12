@@ -1,73 +1,35 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function BikePage() {
-  const [bike, setBike] = useState("");
+export default function BikesPage() {
   const router = useRouter();
+
+  const goCheckout = (name: string, price: number) => {
+    router.push(
+      `/checkout?name=${encodeURIComponent(name)}&price=${price}`
+    );
+  };
 
   return (
     <main style={{ padding: "2rem" }}>
-      <h1>Selecciona tu Bicicleta</h1>
-      <p>Demo Resilience activo</p>
+      <h1>🚴 Bicicletas</h1>
 
-      <button onClick={() => {
-        setBike("Gravel Pro 🚴 - $3.000");
-        router.push("/checkout");
-      }}>
-        Elegir Gravel Pro
+      <button onClick={() => goCheckout("Gravel Pro", 3000)}>
+        Gravel Pro
       </button>
 
-      <button onClick={() => {
-        setBike("MTB Elite 🚵 - $3.200");
-        router.push("/checkout");
-      }}>
-        Elegir MTB Elite
+      <button onClick={() => goCheckout("MTB Elite", 3200)}>
+        MTB Elite
       </button>
 
-      <button onClick={() => {
-        setBike("Urban Rider 🚲 - $2.500");
-        router.push("/checkout");
-      }}>
-        Elegir Urban Rider
+      <button onClick={() => goCheckout("Urban Rider", 2500)}>
+        Urban Rider
       </button>
 
-      <button
-        style={{ background: "black", color: "white" }}
-        onClick={() => setBike("Resilience Smart Bike 🚴‍♂️ - $3.500")}
-      >
-        Elegir Resilience Smart Bike (con chip)
+      <button onClick={() => goCheckout("Resilience Smart Bike", 3500)}>
+        Resilience Smart Bike ⚡
       </button>
-
-      {bike.includes("Resilience") && (
-        <div style={{ marginTop: "20px" }}>
-          <h2>Resilience (Beta)</h2>
-
-          <h3>Basic (incluido en NFT)</h3>
-          <ul>
-            <li>Presión neumáticos</li>
-            <li>Ajustes</li>
-            <li>Postura</li>
-          </ul>
-
-          <h3>Pro (suscripción)</h3>
-          <ul>
-            <li>IA avanzada</li>
-            <li>Rendimiento</li>
-          </ul>
-
-          <button onClick={() => alert("Pro en desarrollo")}>
-            Activar Pro
-          </button>
-        </div>
-      )}
-
-      {bike && (
-        <button onClick={() => router.push("/checkout")}>
-          Ir a Checkout
-        </button>
-      )}
     </main>
   );
 }

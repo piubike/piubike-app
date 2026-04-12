@@ -1,0 +1,23 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
+export default function AppHome() {
+  const router = useRouter();
+
+  return (
+    <main style={{ padding: "2rem" }}>
+      <h1>Dashboard Bike Experience 🚴‍♂️</h1>
+
+      <h2>Selecciona una categoría</h2>
+
+      <button onClick={() => router.push("/app/bikes")}>
+        🚴 Bicicletas
+      </button>
+
+      <button onClick={() => router.push("/app/experiences")}>
+        🌄 Experiencias
+      </button>
+    </main>
+  );
+}
