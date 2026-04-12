@@ -6,8 +6,9 @@ import { useState } from "react";
 export default function Checkout() {
   const searchParams = useSearchParams();
 
-  const name = searchParams.get("name") || "Bici no seleccionada";
-  const price = Number(searchParams.get("price")) || 0;
+  const name = searchParams.get("name");
+  const priceParam = searchParams.get("price");
+  const price = priceParam ? Number(priceParam) : 0;
 
   const [fiat, setFiat] = useState(50);
   const [nameUser, setNameUser] = useState("");
@@ -18,8 +19,10 @@ export default function Checkout() {
   const cryptoAmount = price - fiatAmount;
 
   return (
-    <div style={{ padding: "2rem", background: "#0f172a", color: "white" }}>
-      
+    <div
+      key={name + price}
+      style={{ padding: "2rem", background: "#0f172a", color: "white" }}
+    >
       {/* BOTÓN VOLVER */}
       <button
         onClick={() => (window.location.href = "/bike")}
@@ -37,12 +40,19 @@ export default function Checkout() {
 
       <h1>Piubike Checkout 🚴‍♂️</h1>
 
-      <h2>{name}</h2>
-      <p>${price}</p>
+      <h2>{name ?? "Bici no seleccionada"}</h2>
+      <p>{price ? `$${price}` : "$0"}</p>
 
       {/* RESILIENCE */}
-      {name.includes("Resilience") && (
-        <div style={{ marginTop: "20px", background: "#111", padding: "15px", borderRadius: "10px" }}>
+      {name?.includes("Resilience") && (
+        <div
+          style={{
+            marginTop: "20px",
+            background: "#111",
+            padding: "15px",
+            borderRadius: "10px",
+          }}
+        >
           <h3>🚴‍♂️ Resilience System</h3>
 
           <h4>Basic (incluido en NFT)</h4>
@@ -59,9 +69,7 @@ export default function Checkout() {
             <li>Prevención lesiones</li>
           </ul>
 
-          <p style={{ fontSize: "12px" }}>
-            *Versión Pro en desarrollo
-          </p>
+          <p style={{ fontSize: "12px" }}>*Versión Pro en desarrollo</p>
         </div>
       )}
 
@@ -85,7 +93,14 @@ export default function Checkout() {
       <p>Crypto: {100 - fiat}% → ${cryptoAmount}</p>
 
       {/* ALAS */}
-      <div style={{ marginTop: "20px", background: "#111", padding: "15px", borderRadius: "10px" }}>
+      <div
+        style={{
+          marginTop: "20px",
+          background: "#111",
+          padding: "15px",
+          borderRadius: "10px",
+        }}
+      >
         <h3>🪶 Piubike Alas</h3>
         <p>Tienes 120 Alas</p>
 
