@@ -1,57 +1,41 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useBike } from "@/context/BikeContext";
 
 export default function BikePage() {
   const router = useRouter();
+  const { setBike } = useBike();
 
-  const goToCheckout = (name: string, price: number) => {
-    const encodedName = encodeURIComponent(name);
-    router.push(`/checkout?name=${encodedName}&price=${price}`);
+  const selectBike = (bike: any) => {
+    setBike(bike);
+    router.push("/checkout");
   };
 
   return (
     <main style={{ padding: "2rem" }}>
-      <h1>Selecciona tu Bicicleta</h1>
-      <p>Demo Resilience activo</p>
+      <h1>Selecciona tu Bicicleta 🚴‍♂️</h1>
 
-      <button onClick={() => goToCheckout("Gravel Pro 🚴", 3000)}>
-        Elegir Gravel Pro
+      <button onClick={() => selectBike({ name: "Gravel Pro 🚴", price: 3000 })}>
+        Gravel Pro
       </button>
 
-      <button onClick={() => goToCheckout("MTB Elite 🚵", 3200)}>
-        Elegir MTB Elite
+      <button onClick={() => selectBike({ name: "MTB Elite 🚵", price: 3200 })}>
+        MTB Elite
       </button>
 
-      <button onClick={() => goToCheckout("Urban Rider 🚲", 2500)}>
-        Elegir Urban Rider
+      <button onClick={() => selectBike({ name: "Urban Rider 🚲", price: 2500 })}>
+        Urban Rider
       </button>
 
       <button
         style={{ background: "black", color: "white" }}
         onClick={() =>
-          goToCheckout("Resilience Smart Bike 🚴‍♂️", 3500)
+          selectBike({ name: "Resilience Smart Bike 🚴‍♂️", price: 3500 })
         }
       >
-        Elegir Resilience Smart Bike (con chip)
+        Resilience Smart Bike
       </button>
-
-      <div style={{ marginTop: "20px" }}>
-        <h2>Resilience (Beta)</h2>
-
-        <h3>Basic (NFT)</h3>
-        <ul>
-          <li>Presión neumáticos</li>
-          <li>Ajustes</li>
-          <li>Postura</li>
-        </ul>
-
-        <h3>Pro (suscripción)</h3>
-        <ul>
-          <li>IA avanzada</li>
-          <li>Rendimiento</li>
-        </ul>
-      </div>
     </main>
   );
 }
