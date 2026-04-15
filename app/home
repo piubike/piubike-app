@@ -1,23 +1,44 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useBike } from "../../context/BikeContext";
 
 export default function AppHome() {
   const router = useRouter();
+  const { setBike } = useBike();
+
+  const bikes = [
+    { id: 1, name: "Álvarez Gravel Pro", price: 2490 },
+    { id: 2, name: "Álvarez MTB XCM", price: 2790 },
+    { id: 3, name: "Álvarez Road Aero", price: 3190 },
+  ];
+
+  const handleSelect = (bike: any) => {
+    setBike(bike);
+    router.push("/checkout");
+  };
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>Dashboard Bike Experience 🚴‍♂️</h1>
+    <div style={{ padding: 40 }}>
+      <h1>Selecciona tu bicicleta</h1>
 
-      <h2>Selecciona una categoría</h2>
-
-      <button onClick={() => router.push("/app/bikes")}>
-        🚴 Bicicletas
-      </button>
-
-      <button onClick={() => router.push("/app/experiences")}>
-        🌄 Experiencias
-      </button>
-    </main>
+      <div style={{ display: "grid", gap: 20, marginTop: 20 }}>
+        {bikes.map((bike) => (
+          <div
+            key={bike.id}
+            onClick={() => handleSelect(bike)}
+            style={{
+              padding: 20,
+              border: "1px solid #ddd",
+              borderRadius: 10,
+              cursor: "pointer",
+            }}
+          >
+            <h2>{bike.name}</h2>
+            <p>${bike.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

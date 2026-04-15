@@ -1,22 +1,11 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const BikeContext = createContext<any>(null);
 
 export function BikeProvider({ children }: any) {
   const [bike, setBike] = useState<any>(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("bike");
-    if (stored) setBike(JSON.parse(stored));
-  }, []);
-
-  useEffect(() => {
-    if (bike) {
-      localStorage.setItem("bike", JSON.stringify(bike));
-    }
-  }, [bike]);
 
   return (
     <BikeContext.Provider value={{ bike, setBike }}>
